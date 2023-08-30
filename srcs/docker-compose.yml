@@ -1,0 +1,19 @@
+# Your docker-compose.yml content here
+version: '3.4'
+services:
+  NGINX:
+    # Path to dockerfile.
+    # '.' represents the current directory in which
+    # docker-compose.yml is present.
+    build:
+
+    # Mapping of container port to host
+    ports:
+      - "8080:80"
+
+    # Mount volume 
+    # volume itsitira itsitira itsitira
+    # Link database container to app container 
+    # for reachability.
+    networks :
+      - docker-network
