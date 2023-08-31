@@ -1,19 +1,22 @@
 # Your docker-compose.yml content here
 version: '3.4'
+
 services:
-  NGINX:
-    # Path to dockerfile.
-    # '.' represents the current directory in which
-    # docker-compose.yml is present.
-    build:
+  nginx:
+    build: requirements/nginx/
 
-    # Mapping of container port to host
     ports:
-      - "8080:80"
+      - "8080:443"
 
-    # Mount volume 
-    # volume itsitira itsitira itsitira
-    # Link database container to app container 
-    # for reachability.
     networks :
       - docker-network
+    depends_on :
+      - wordpress
+  wordpress:
+    build: requirements/wordpress/
+
+    networks :
+      - docker-network
+networks:
+  docker-network:
+    driver: bridge
