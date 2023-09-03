@@ -12,6 +12,5 @@ RUN openssl genpkey -algorithm RSA -out /etc/nginx/priv.key \
 
 COPY conf/nginx.conf /etc/nginx/conf.d/.
 
-COPY info.php /var/www/html/info.php
 
 CMD ["nginx", "-g", "daemon off;"]

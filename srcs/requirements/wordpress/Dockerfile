@@ -2,9 +2,8 @@ FROM debian:bullseye
 
 RUN apt-get update -y
 
-RUN apt-get install vim lsof -y
-
-RUN apt-get install -y php7.4 php7.4-fpm curl mariadb-server
+RUN apt-get install -y php php-mysql php-curl php-gd php-mbstring php-xml php7.4-mysql php7.4-fpm \
+curl mariadb-client
 
 RUN mkdir -p /run/php/
 
@@ -19,4 +18,6 @@ COPY conf /etc/php/7.4/fpm/pool.d/www.conf
 
 COPY info.php /var/www/html/info.php
 
-CMD ["./script.sh"]
+WORKDIR /var/www/html
+
+CMD ["/script.sh"]
