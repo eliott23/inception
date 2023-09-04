@@ -4,8 +4,10 @@ version: '3.4'
 services:
   nginx:
     build: requirements/nginx/
+    env_file:
+      - .env
     ports:
-      - "5000:443"
+      - "8080:443"
     networks :
       - docker-network
     volumes :
@@ -15,6 +17,8 @@ services:
 
   wordpress:
     build: requirements/wordpress/
+    env_file:
+      - .env
     networks :
       - docker-network
     volumes :
@@ -24,10 +28,12 @@ services:
 
   mariadb:
     build: requirements/mariadb/
+    env_file:
+      - .env
     networks :
       - docker-network
     volumes :
-      - cm_volume:/var/www/html
+      - db_volume:/var/lib/mysql
 
 networks:
   docker-network:
@@ -36,4 +42,7 @@ networks:
 volumes :
   cm_volume :
     name : wordpress
+    driver : local
+  db_volume :
+    name : mariadb
     driver : local

@@ -1,9 +1,8 @@
 #!/bin/bash
-
 service mariadb start
-mariadb -u root -e "CREATE DATABASE wpclidemo;"
-mariadb -u root -e "CREATE USER 'aababach'@'%' IDENTIFIED BY 'pass123';"
-mariadb -u root -e "GRANT ALL PRIVILEGES ON wpclidemo.* TO 'aababach';"
+mariadb -u root -e "CREATE DATABASE $DB;"
+mariadb -u root -e "CREATE USER '$USER'@'%' IDENTIFIED BY '$PASS';"
+mariadb -u root -e "GRANT ALL PRIVILEGES ON $DB.* TO '$USER';"
 mariadb -u root -e "FLUSH PRIVILEGES;"
 service mariadb stop
 
