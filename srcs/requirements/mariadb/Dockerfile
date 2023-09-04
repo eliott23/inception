@@ -2,14 +2,10 @@ FROM debian:bullseye
 
 RUN apt-get update -y
 
-RUN apt-get install nginx -y
+RUN apt-get install mariadb-server -y
 
-RUN apt-get install openssl -y
+COPY conf/script.sh .
 
-RUN openssl genpkey -algorithm RSA -out /etc/nginx/priv.key \
-&& openssl req -new -batch -key /etc/nginx/priv.key -out /etc/nginx/server.csr \
-&& openssl x509 -req -days 365 -in /etc/nginx/server.csr -signkey /etc/nginx/priv.key -out /etc/nginx/server.crt
+RUN chmod +x script.sh
 
-COPY conf/nginx.conf /etc/nginx/conf.d/.
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["./script.sh"]

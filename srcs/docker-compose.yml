@@ -4,19 +4,26 @@ version: '3.4'
 services:
   nginx:
     build: requirements/nginx/
-
     ports:
       - "5000:443"
-
     networks :
       - docker-network
     volumes :
       - cm_volume:/var/www/html
     depends_on :
       - wordpress
+
   wordpress:
     build: requirements/wordpress/
+    networks :
+      - docker-network
+    volumes :
+      - cm_volume:/var/www/html
+    depends_on:
+      - mariadb
 
+  mariadb:
+    build: requirements/mariadb/
     networks :
       - docker-network
     volumes :
