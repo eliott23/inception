@@ -43,6 +43,14 @@ volumes :
   cm_volume :
     name : wordpress
     driver : local
+    driver_opts:
+        device: /home/aababach/data/db_data
+        o: bind
+        type: none
   db_volume :
     name : mariadb
     driver : local
+    driver_opts:
+        device: /home/aababach/data/wp_data
+        o: bind
+        type: none

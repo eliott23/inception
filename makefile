@@ -13,9 +13,9 @@ re:
 	docker-compose -f ./srcs/docker-compose.yml  restart
 
 clean:
-	docker-compose -f ./srcs/docker-compose.yml down -v --rmi all
-	sudo rm -rf /home/hsaidi/data/wp_data/*
-	sudo rm -rf /home/hsaidi/data/m_data/*
+	docker rm -f $(docker ps -aq)
+	sudo rm -rf /home/aababach/data/wp_data/*
+	sudo rm -rf /home/aababach/data/m_data/*
 
 # View the logs of the Docker Compose services
 logs:
