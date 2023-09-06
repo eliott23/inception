@@ -11,10 +11,13 @@ down:
 	docker compose -f ./srcs/docker-compose.yml down
 # Restart the Docker Compose services
 
-clean:
-	docker rm -f wordpress mariadb NGINX
+clean: down
+	docker image rm -f srcs-wordpress-1 srcs-mariadb-1 srcs-nginx-1
 	rm -rf /home/aababach/data/wp_data/*
 	rm -rf /home/aababach/data/db_data/*
+	docker volume rm -f wordpress mariadb
+
+fclean: clean
 	docker system prune -af
 
 # View the logs of the Docker Compose services
