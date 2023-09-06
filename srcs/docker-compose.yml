@@ -3,11 +3,12 @@ version: '3.4'
 
 services:
   nginx:
+    container_name: NGINX
     build: requirements/nginx/
     env_file:
       - .env
     ports:
-      - "8080:443"
+      - "443:443"
     networks :
       - docker-network
     volumes :
@@ -16,6 +17,8 @@ services:
       - wordpress
 
   wordpress:
+    init: true
+    container_name: wordpress
     build: requirements/wordpress/
     env_file:
       - .env
@@ -27,6 +30,8 @@ services:
       - mariadb
 
   mariadb:
+    init: true
+    container_name: mariadb
     build: requirements/mariadb/
     env_file:
       - .env
@@ -44,13 +49,9 @@ volumes :
     name : wordpress
     driver : local
     driver_opts:
-        device: /home/aababach/data/db_data
-        o: bind
-        type: none
+        device: /home/aababach/data/wp_data
   db_volume :
     name : mariadb
     driver : local
     driver_opts:
-        device: /home/aababach/data/wp_data
-        o: bind
-        type: none
+        device: /home/aababach/data/db_data

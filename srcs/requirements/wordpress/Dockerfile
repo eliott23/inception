@@ -16,8 +16,6 @@ RUN chmod +x script.sh
 
 COPY conf /etc/php/7.4/fpm/pool.d/www.conf
 
-COPY info.php /var/www/html/info.php
-
 WORKDIR /var/www/html
 
 CMD ["/script.sh"]

@@ -7,4 +7,4 @@ service mariadb stop
 
 sed -i '30c\bind-address            = 0.0.0.0' /etc/mysql/mariadb.conf.d/50-server.cnf
 
-mariadbd
+exec mariadbd
