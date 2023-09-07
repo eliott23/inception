@@ -2,7 +2,7 @@ FROM debian:bullseye
 
 RUN apt-get update -y
 
-RUN apt-get install mariadb-server -y
+RUN apt-get install mariadb-server mariadb-client -y
 
 COPY conf/script.sh .
 
